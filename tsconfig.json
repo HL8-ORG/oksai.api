@@ -9,24 +9,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "paths": {
-      "@app/common": [
-        "libs/common/src/index.ts"
-      ],
-      "@app/common/*": [
-        "libs/common/src/*"
-      ],
-      "@app/core": [
-        "libs/core/src/index.ts"
-      ],
-      "@app/core/*": [
-        "libs/core/src/*"
-      ],
-      "@app/email-template": [
-        "libs/email-template/index.ts"
-      ],
-      "@app/email-template/*": [
-        "libs/email-template/*"
-      ]
+
     }
   }
 }

@@ -26,7 +26,7 @@ alwaysApply: true
 - 全仓统一采用 Node.js + TypeScript，使用 pnpm 管理依赖并通过 monorepo 组织代码。
 
 
-- 关系型数据库选型锁定 PostgreSQL，文档型数据库选型锁定 MongoDB。
+- 关系型数据库选型锁定 PostgreSQL。
 
 
 
