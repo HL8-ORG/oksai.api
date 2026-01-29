@@ -124,7 +124,7 @@ export class AuthController {
     );
 
     // 返回用户信息（排除密码哈希）
-    const { hash, ...userInfo } = user;
+    const { hash: _hash, ...userInfo } = user;
     return userInfo;
   }
 }

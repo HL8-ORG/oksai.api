@@ -198,7 +198,7 @@ export class AuthService {
   async verifyToken(token: string): Promise<JwtPayload> {
     try {
       return this.jwtService.verify<JwtPayload>(token);
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('无效的 Token');
     }
   }

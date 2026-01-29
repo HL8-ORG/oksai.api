@@ -22,8 +22,8 @@ import { ApplicationPluginConfig } from '@oksai/common';
  */
 export function getEntitiesFromPlugins(
   config: Partial<ApplicationPluginConfig>,
-): Type<any>[] {
-  const entities: Type<any>[] = [];
+): Type<unknown>[] {
+  const entities: Type<unknown>[] = [];
 
   if (!config.plugins) {
     return entities;
@@ -32,8 +32,15 @@ export function getEntitiesFromPlugins(
   for (const plugin of config.plugins) {
     // 如果插件是类且实现了 IPlugin 接口
     if (typeof plugin === 'function') {
-      const pluginInstance = new (plugin as any)();
-      if (pluginInstance && typeof pluginInstance.getEntities === 'function') {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+      const pluginInstance = new (plugin as new () => { getEntities?: () => Type<unknown>[] })();
+      if (
+        pluginInstance &&
+        pluginInstance.getEntities &&
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+        typeof pluginInstance.getEntities === 'function'
+      ) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
         const pluginEntities = pluginInstance.getEntities();
         if (Array.isArray(pluginEntities)) {
           entities.push(...pluginEntities);
@@ -52,12 +59,12 @@ export function getEntitiesFromPlugins(
  * 遍历所有插件，收集它们提供的订阅者。
  *
  * @param config - 应用插件配置
- * @returns Type<any>[] - 订阅者类型数组
+ * @returns Type<unknown>[] - 订阅者类型数组
  */
 export function getSubscribersFromPlugins(
   config: Partial<ApplicationPluginConfig>,
-): Type<any>[] {
-  const subscribers: Type<any>[] = [];
+): Type<unknown>[] {
+  const subscribers: Type<unknown>[] = [];
 
   if (!config.plugins) {
     return subscribers;
@@ -66,11 +73,15 @@ export function getSubscribersFromPlugins(
   for (const plugin of config.plugins) {
     // 如果插件是类且实现了 IPlugin 接口
     if (typeof plugin === 'function') {
-      const pluginInstance = new (plugin as any)();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+      const pluginInstance = new (plugin as new () => { getSubscribers?: () => Type<unknown>[] })();
       if (
         pluginInstance &&
+        pluginInstance.getSubscribers &&
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
         typeof pluginInstance.getSubscribers === 'function'
       ) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
         const pluginSubscribers = pluginInstance.getSubscribers();
         if (Array.isArray(pluginSubscribers)) {
           subscribers.push(...pluginSubscribers);
@@ -92,7 +103,7 @@ export function getSubscribersFromPlugins(
  * @returns ApplicationPluginConfigurationFn[] - 配置函数数组
  */
 export function getPluginConfigurations(
-  plugins?: Array<any>,
+  plugins?: Array<unknown>,
 ): Array<(config: ApplicationPluginConfig) => ApplicationPluginConfig | Promise<ApplicationPluginConfig>> {
   const configurations: Array<
     (config: ApplicationPluginConfig) => ApplicationPluginConfig | Promise<ApplicationPluginConfig>
@@ -105,12 +116,18 @@ export function getPluginConfigurations(
   for (const plugin of plugins) {
     // 如果插件是类且实现了 IPlugin 接口
     if (typeof plugin === 'function') {
-      const pluginInstance = new (plugin as any)();
+      const pluginInstance = new (plugin as new () => { configure?: () => (config: ApplicationPluginConfig) => ApplicationPluginConfig | Promise<ApplicationPluginConfig> })();
       if (
         pluginInstance &&
+        pluginInstance.configure &&
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
         typeof pluginInstance.configure === 'function'
       ) {
-        configurations.push(pluginInstance.configure.bind(pluginInstance));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+        const configureFn = pluginInstance.configure();
+        if (configureFn && typeof configureFn === 'function') {
+          configurations.push(configureFn);
+        }
       }
     }
   }

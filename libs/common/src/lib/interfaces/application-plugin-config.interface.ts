@@ -57,7 +57,7 @@ export interface ApplicationPluginConfig {
    * @description
    * 动态模块或类类型的数组，表示要添加到应用的插件。
    */
-  plugins?: Array<DynamicModule | Type<any>>;
+  plugins?: Array<DynamicModule | Type<unknown>>;
 }
 
 /**

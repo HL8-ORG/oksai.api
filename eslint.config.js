@@ -5,7 +5,18 @@ import globals from 'globals';
 
 export default tseslint.config(
   {
-    ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**', '**/*.config.js'],
+    ignores: [
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/coverage/**',
+      '**/*.config.js',
+      '**/*.d.ts',
+      '**/*.js',
+      '**/*.js.map',
+      '**/*.d.ts.map',
+      'forks/**',
+      'examples/**',
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -18,7 +29,8 @@ export default tseslint.config(
       parserOptions: {
         ecmaVersion: 2021,
         sourceType: 'module',
-        project: './tsconfig.json',
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
@@ -33,6 +45,7 @@ export default tseslint.config(
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-unsafe-function-type': 'warn',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
   },

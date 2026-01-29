@@ -4,10 +4,7 @@
   "version": "1.0.0",
   "description": "Nest TypeScript starter repository",
   "license": "MIT",
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ],
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "build:clean": "turbo run build:clean",
@@ -22,7 +19,6 @@
     "prepare": "husky"
   },
   "engines": {
-    "npm": ">=10.0.0",
     "node": ">=20.0.0"
   },
   "packageManager": "pnpm@10.17.0",

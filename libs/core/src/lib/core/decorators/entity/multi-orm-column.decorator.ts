@@ -14,11 +14,11 @@ import { Property, PropertyOptions } from '@mikro-orm/core';
  * 列选项类型
  */
 export interface ColumnOptions {
-  type?: string | Function;
+  type?: string | (() => unknown);
   nullable?: boolean;
-  default?: any;
+  default?: unknown;
   relationId?: boolean;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**
@@ -42,7 +42,7 @@ export interface ColumnOptions {
 export function MultiORMColumn(options?: ColumnOptions): PropertyDecorator {
   // 当前仅支持 MikroORM
   // 未来扩展：同时应用 TypeORM Column 装饰器
-  return (target: any, propertyKey: string | symbol) => {
+  return (target: object, propertyKey: string | symbol) => {
     // 应用 MikroORM Property 装饰器
     Property(options as PropertyOptions<object>)(target, propertyKey as string);
 
