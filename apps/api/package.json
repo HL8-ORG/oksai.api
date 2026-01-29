@@ -1,0 +1,42 @@
+{
+  "name": "@oksai/api",
+  "version": "0.1.0",
+  "description": "Oksai API - 纯后端 API 服务",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "build:clean": "rimraf dist",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {
+    "@nestjs/common": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@nestjs/swagger": "catalog:",
+    "@oksai/config": "workspace:*",
+    "@oksai/core": "workspace:*",
+    "@oksai/auth": "workspace:*",
+    "chalk": "catalog:",
+    "class-validator": "catalog:",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "catalog:",
+    "@nestjs/schematics": "catalog:",
+    "@nestjs/testing": "catalog:",
+    "@types/express": "catalog:",
+    "@types/node": "catalog:",
+    "jest": "catalog:",
+    "rimraf": "catalog:",
+    "ts-jest": "catalog:",
+    "ts-node": "catalog:",
+    "typescript": "catalog:"
+  }
+}

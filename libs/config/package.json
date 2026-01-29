@@ -1,0 +1,20 @@
+{
+  "name": "@oksai/config",
+  "version": "0.1.0",
+  "description": "Oksai Config Module - 配置管理模块",
+  "license": "MIT",
+  "private": true,
+  "main": "./src/index.ts",
+  "typings": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@nestjs/common": "catalog:",
+    "dotenv": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

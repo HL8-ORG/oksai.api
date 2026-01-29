@@ -5,6 +5,10 @@
 **/tsconfig.tsbuildinfo
 **/dist
 **/.env
+**/.env.local
+**/.env.development
+**/.env.production
+!.env.example
 **/.idea
 **/.pnpm-store
 
@@ -12,3 +16,4 @@
 **/*.d.ts
 
 forks/**
+examples/**

@@ -1,0 +1,1 @@
+{"version":3,"file":"event-bus.module.js","sourceRoot":"","sources":["event-bus.module.ts"],"names":[],"mappings":";;;;;;;;;AASA,2CAAwC;AACxC,2CAAuC;AAYhC,IAAM,cAAc,GAApB,MAAM,cAAc;CAAG,CAAA;AAAjB,wCAAc;yBAAd,cAAc;IAJ1B,IAAA,eAAM,EAAC;QACN,SAAS,EAAE,CAAC,oBAAQ,CAAC;QACrB,OAAO,EAAE,CAAC,oBAAQ,CAAC;KACpB,CAAC;GACW,cAAc,CAAG"}

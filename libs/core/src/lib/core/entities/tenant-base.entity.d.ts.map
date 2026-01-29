@@ -1,0 +1,1 @@
+{"version":3,"file":"tenant-base.entity.d.ts","sourceRoot":"","sources":["tenant-base.entity.ts"],"names":[],"mappings":"AAYA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAE3C,OAAO,EAAE,MAAM,EAAE,MAAM,4BAA4B,CAAC;AAKpD,MAAM,WAAW,yBAAyB;IACxC,QAAQ,CAAC,EAAE,MAAM,CAAC;CACnB;AASD,8BAAsB,gBACpB,SAAQ,UACR,YAAW,yBAAyB;IASpC,MAAM,CAAC,EAAE,MAAM,CAAC;IAShB,QAAQ,CAAC,EAAE,MAAM,CAAC;CACnB"}

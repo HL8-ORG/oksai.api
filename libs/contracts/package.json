@@ -1,0 +1,17 @@
+{
+  "name": "@oksai/contracts",
+  "version": "0.1.0",
+  "description": "Oksai Contracts Module - 接口契约模块",
+  "license": "MIT",
+  "private": true,
+  "main": "./src/index.ts",
+  "typings": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "rimraf dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

@@ -3,13 +3,40 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "ES2023",
+    "lib": ["ES2023"],
     "baseUrl": ".",
     "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
-
+      "@oksai/core": ["./libs/core/src"],
+      "@oksai/auth": ["./libs/auth/src"],
+      "@oksai/common": ["./libs/common/src"],
+      "@oksai/config": ["./libs/config/src"],
+      "@oksai/constants": ["./libs/constants/src"],
+      "@oksai/contracts": ["./libs/contracts/src"],
+      "@oksai/utils": ["./libs/utils/src"]
     }
-  }
+  },
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
 }

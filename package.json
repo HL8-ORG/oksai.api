@@ -13,11 +13,13 @@
     "build:clean": "turbo run build:clean",
     "test": "turbo run test",
     "dev": "dotenv -e .env -- turbo run start:dev --parallel",
-    "prod": "turbo run start:prod --parallel",
+    "prod": "dotenv -e .env.production -- turbo run start:prod --parallel",
     "migration:up": "turbo run migration:up --parallel",
-    "lint": "turbo run lint",
-    "prepare": "husky",
-    "format": "prettier --write \"apps/**/src/**/*.ts\" \"libs/**/src/**/*.ts\""
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"apps/**/src/**/*.ts\" \"libs/**/src/**/*.ts\" \"*.{js,json,md}\"",
+    "format:check": "prettier --check \"apps/**/src/**/*.ts\" \"libs/**/src/**/*.ts\" \"*.{js,json,md}\"",
+    "prepare": "husky"
   },
   "engines": {
     "npm": ">=10.0.0",

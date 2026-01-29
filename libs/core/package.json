@@ -1,0 +1,33 @@
+{
+  "name": "@oksai/core",
+  "version": "0.1.0",
+  "description": "Oksai Platform Core - 核心业务框架",
+  "license": "MIT",
+  "private": true,
+  "main": "./src/index.ts",
+  "typings": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@nestjs/common": "catalog:",
+    "@nestjs/cqrs": "catalog:",
+    "@nestjs/swagger": "catalog:",
+    "@nestjs/graphql": "catalog:",
+    "@nestjs/apollo": "catalog:",
+    "@mikro-orm/nestjs": "catalog:",
+    "@mikro-orm/core": "catalog:",
+    "@mikro-orm/postgresql": "catalog:",
+    "@oksai/config": "workspace:*",
+    "class-transformer": "catalog:",
+    "class-validator": "catalog:",
+    "nestjs-cls": "catalog:",
+    "rxjs": "catalog:",
+    "graphql": "catalog:",
+    "apollo-server-express": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

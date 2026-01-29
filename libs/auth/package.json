@@ -1,0 +1,33 @@
+{
+  "name": "@oksai/auth",
+  "version": "0.1.0",
+  "description": "Oksai Authentication Module - 认证授权模块",
+  "license": "MIT",
+  "private": true,
+  "main": "./src/index.ts",
+  "typings": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@nestjs/common": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/jwt": "catalog:",
+    "@nestjs/passport": "catalog:",
+    "@nestjs/swagger": "catalog:",
+    "@mikro-orm/core": "catalog:",
+    "@mikro-orm/nestjs": "catalog:",
+    "@oksai/core": "workspace:*",
+    "class-transformer": "catalog:",
+    "class-validator": "catalog:",
+    "passport": "catalog:",
+    "passport-jwt": "catalog:",
+    "bcrypt": "catalog:"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/passport-jwt": "catalog:",
+    "typescript": "catalog:"
+  }
+}
