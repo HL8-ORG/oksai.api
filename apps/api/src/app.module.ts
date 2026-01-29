@@ -10,7 +10,7 @@
 
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
-import { ConfigModule } from '@oksai/config';
+import { ConfigModule, ConfigService } from '@oksai/config';
 import {
   DatabaseModule,
   EventBusModule,
@@ -20,8 +20,10 @@ import {
   TransformInterceptor,
   AllExceptionsFilter,
   ValidationPipe,
+  GraphqlCoreModule,
 } from '@oksai/core';
 import { AuthModule } from './modules/auth/auth.module';
+import { TaskModule } from './modules/task/task.module';
 
 /**
  * 应用根模块
@@ -41,8 +43,16 @@ import { AuthModule } from './modules/auth/auth.module';
     EventBusModule,
     // CQRS 模块
     CqrsModule,
+    // GraphQL 模块
+    GraphqlCoreModule.registerAsync((configService: ConfigService) => ({
+      path: '/graphql',
+      playground: !configService.isProduction(),
+      debug: !configService.isProduction(),
+    })),
     // 认证模块
     AuthModule,
+    // 业务模块
+    TaskModule,
   ],
   controllers: [],
   providers: [

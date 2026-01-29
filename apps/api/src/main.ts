@@ -23,8 +23,10 @@ import * as chalk from 'chalk';
  * @description
  * 从 .env 文件中加载环境变量
  */
+// eslint-disable-next-line no-console
 console.log(chalk.blue('Loading Environment Variables...'));
 loadEnv();
+// eslint-disable-next-line no-console
 console.log(chalk.green('✓ Environment Variables Loaded'));
 
 /**
@@ -34,6 +36,7 @@ console.log(chalk.green('✓ Environment Variables Loaded'));
  * 创建并启动 NestJS 应用，配置全局中间件和选项
  */
 async function bootstrap() {
+  // eslint-disable-next-line no-console
   console.time(chalk.yellow('✔ Application Startup Time'));
 
   // 创建 NestJS 应用实例
@@ -72,7 +75,9 @@ async function bootstrap() {
   // 启动服务器
   await app.listen(port, host);
 
+  // eslint-disable-next-line no-console
   console.timeEnd(chalk.yellow('✔ Application Startup Time'));
+  // eslint-disable-next-line no-console
   console.log(chalk.green(`🚀 Application is running on: http://${host}:${port}`));
 }
 

@@ -1,0 +1,28 @@
+{
+  "name": "@oksai/tests-integration",
+  "version": "0.1.0",
+  "description": "Oksai API 集成测试",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {
+    "@nestjs/testing": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@oksai/api": "workspace:*",
+    "@oksai/core": "workspace:*",
+    "@oksai/config": "workspace:*",
+    "@oksai/auth": "workspace:*",
+    "supertest": "catalog:"
+  },
+  "devDependencies": {
+    "@types/jest": "catalog:",
+    "@types/supertest": "catalog:",
+    "jest": "catalog:",
+    "ts-jest": "catalog:",
+    "typescript": "catalog:"
+  }
+}

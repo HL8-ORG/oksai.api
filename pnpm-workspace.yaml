@@ -1,6 +1,7 @@
 packages:
   - 'apps/*'
   - 'libs/*'
+  - 'tests/*'
 
 # Catalog 配置 - 集中管理依赖版本
 catalog:
@@ -54,5 +55,8 @@ catalog:
   # 开发工具
   'jest': '^29.7.0'
   'ts-jest': '^29.2.5'
+  '@types/jest': '^29.5.14'
+  '@types/supertest': '^6.0.2'
+  'supertest': '^7.0.0'
   'ts-node': '^10.9.2'
   'rimraf': '^6.0.1'

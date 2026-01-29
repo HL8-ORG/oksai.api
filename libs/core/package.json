@@ -8,7 +8,10 @@
   "typings": "./src/index.ts",
   "scripts": {
     "build": "tsc",
-    "build:clean": "rimraf dist"
+    "build:clean": "rimraf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
   },
   "dependencies": {
     "@nestjs/common": "catalog:",
@@ -28,6 +31,10 @@
     "apollo-server-express": "catalog:"
   },
   "devDependencies": {
+    "@nestjs/testing": "catalog:",
+    "@types/jest": "catalog:",
+    "jest": "catalog:",
+    "ts-jest": "catalog:",
     "typescript": "catalog:"
   }
 }

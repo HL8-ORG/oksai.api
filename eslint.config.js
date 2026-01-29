@@ -14,6 +14,11 @@ export default tseslint.config(
       '**/*.js',
       '**/*.js.map',
       '**/*.d.ts.map',
+      '**/test/**',
+      '**/tests/**',
+      '**/*.spec.ts',
+      '**/*.test.ts',
+      '**/jest.config.ts',
       'forks/**',
       'examples/**',
     ],
@@ -50,10 +55,17 @@ export default tseslint.config(
     },
   },
   {
-    files: ['**/*.spec.ts', '**/*.test.ts'],
+    files: ['**/*.spec.ts', '**/*.test.ts', '**/jest.config.ts'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       'no-console': 'off',
+      '@typescript-eslint/no-unsafe-function-type': 'off',
+    },
+  },
+  {
+    files: ['**/load-env.ts', '**/default-logger.ts'],
+    rules: {
+      'no-console': 'off', // 这些文件需要 console 输出
     },
   },
 );
