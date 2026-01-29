@@ -14,21 +14,21 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
+    "@mikro-orm/core": "catalog:",
+    "@mikro-orm/nestjs": "catalog:",
+    "@mikro-orm/postgresql": "catalog:",
+    "@nestjs/apollo": "catalog:",
     "@nestjs/common": "catalog:",
     "@nestjs/cqrs": "catalog:",
-    "@nestjs/swagger": "catalog:",
     "@nestjs/graphql": "catalog:",
-    "@nestjs/apollo": "catalog:",
-    "@mikro-orm/nestjs": "catalog:",
-    "@mikro-orm/core": "catalog:",
-    "@mikro-orm/postgresql": "catalog:",
+    "@nestjs/swagger": "catalog:",
     "@oksai/config": "workspace:*",
+    "apollo-server-express": "catalog:",
     "class-transformer": "catalog:",
     "class-validator": "catalog:",
-    "nestjs-cls": "catalog:",
-    "rxjs": "catalog:",
     "graphql": "catalog:",
-    "apollo-server-express": "catalog:"
+    "nestjs-cls": "catalog:",
+    "rxjs": "catalog:"
   },
   "devDependencies": {
     "@nestjs/testing": "catalog:",

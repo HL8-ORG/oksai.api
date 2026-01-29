@@ -473,6 +473,8 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
+  tests/e2e: {}
+
   tests/integration:
     dependencies:
       '@nestjs/platform-express':

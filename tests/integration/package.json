@@ -10,12 +10,12 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@nestjs/testing": "catalog:",
     "@nestjs/platform-express": "catalog:",
+    "@nestjs/testing": "catalog:",
     "@oksai/api": "workspace:*",
-    "@oksai/core": "workspace:*",
-    "@oksai/config": "workspace:*",
     "@oksai/auth": "workspace:*",
+    "@oksai/config": "workspace:*",
+    "@oksai/core": "workspace:*",
     "supertest": "catalog:"
   },
   "devDependencies": {

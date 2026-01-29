@@ -11,8 +11,8 @@
     "build:clean": "rimraf dist"
   },
   "dependencies": {
-    "@nestjs/common": "catalog:",
-    "@mikro-orm/nestjs": "catalog:"
+    "@mikro-orm/nestjs": "catalog:",
+    "@nestjs/common": "catalog:"
   },
   "devDependencies": {
     "typescript": "catalog:"

@@ -11,19 +11,19 @@
     "build:clean": "rimraf dist"
   },
   "dependencies": {
+    "@mikro-orm/core": "catalog:",
+    "@mikro-orm/nestjs": "catalog:",
     "@nestjs/common": "catalog:",
     "@nestjs/core": "catalog:",
     "@nestjs/jwt": "catalog:",
     "@nestjs/passport": "catalog:",
     "@nestjs/swagger": "catalog:",
-    "@mikro-orm/core": "catalog:",
-    "@mikro-orm/nestjs": "catalog:",
     "@oksai/core": "workspace:*",
+    "bcrypt": "catalog:",
     "class-transformer": "catalog:",
     "class-validator": "catalog:",
     "passport": "catalog:",
-    "passport-jwt": "catalog:",
-    "bcrypt": "catalog:"
+    "passport-jwt": "catalog:"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
