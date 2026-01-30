@@ -1,0 +1,57 @@
+# Dependabot 配置
+# 自动检查依赖更新
+
+version: 2
+updates:
+  # 启用 npm 依赖更新
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    groups:
+      # 将开发依赖分组
+      dev-dependencies:
+        patterns:
+          - "@types/*"
+          - "@nestjs/*"
+          - "eslint*"
+          - "prettier*"
+          - "jest*"
+          - "ts-*"
+          - "typescript*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # 启用 Docker 依赖更新
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    labels:
+      - "dependencies"
+      - "docker"
+      - "automated"
+
+  # 启用 GitHub Actions 更新
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "automated"

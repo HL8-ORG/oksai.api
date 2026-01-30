@@ -1,0 +1,117 @@
+# Oksai API Docker Compose 生产环境配置
+# 用于生产环境部署
+
+services:
+  # PostgreSQL 数据库
+  db:
+    container_name: oksai-db-prod
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - oksai-network-prod
+    restart: always
+    # 生产环境不暴露端口，仅内部访问
+    # ports:
+    #   - "5432:5432"
+
+    # Redis 缓存
+  redis:
+    container_name: oksai-redis-prod
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data_prod:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - oksai-network-prod
+    restart: always
+    # 生产环境不暴露端口，仅内部访问
+    # ports:
+    #   - "6379:6379"
+
+    # Oksai API 服务
+  api:
+    container_name: oksai-api-prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      # 应用配置
+      NODE_ENV: production
+      API_HOST: ${API_HOST:-0.0.0.0}
+      API_PORT: ${API_PORT:-3000}
+      API_BASE_URL: ${API_BASE_URL}
+
+      # 数据库配置
+      DB_TYPE: ${DB_TYPE:-postgresql}
+      DB_HOST: db
+      DB_PORT: ${DB_PORT:-5432}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+      # Redis 配置
+      REDIS_HOST: redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+      # JWT 配置
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1d}
+      JWT_REFRESH_TOKEN_SECRET: ${JWT_REFRESH_TOKEN_SECRET}
+      JWT_REFRESH_TOKEN_EXPIRES_IN: ${JWT_REFRESH_TOKEN_EXPIRES_IN:-7d}
+
+      # Session 配置
+      EXPRESS_SESSION_SECRET: ${EXPRESS_SESSION_SECRET}
+    env_file:
+      - .env.production
+    ports:
+      - "${API_PORT:-3000}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - oksai-network-prod
+    restart: always
+    healthcheck:
+      test: [ "CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # 生产环境可以添加资源限制
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+volumes:
+  postgres_data_prod:
+    driver: local
+  redis_data_prod:
+    driver: local
+
+networks:
+  oksai-network-prod:
+    driver: bridge

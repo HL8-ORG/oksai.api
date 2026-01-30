@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "Oksai API - Turbo",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "build:clean": "turbo run build:clean",

@@ -1,0 +1,56 @@
+# Dependabot 自动合并工作流
+# 自动合并 Dependabot 的依赖更新 PR（仅限补丁和次要版本）
+
+name: Dependabot Auto Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  auto-merge:
+    name: Auto Merge Dependabot PRs
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: 检查 PR 类型
+        id: check-pr
+        run: |
+          # 检查是否为依赖更新 PR
+          if [[ "${{ github.event.pull_request.title }}" =~ ^(chore|deps|build) ]]; then
+            echo "is_dependency_update=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_dependency_update=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 等待 CI 通过
+        if: steps.check-pr.outputs.is_dependency_update == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: checks } = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.payload.pull_request.head.sha,
+            });
+
+            const allPassed = checks.check_runs.every(
+              (check) => check.status === 'completed' && check.conclusion === 'success'
+            );
+
+            if (!allPassed) {
+              core.setFailed('CI 检查未全部通过');
+            }
+
+      - name: 自动合并 PR
+        if: steps.check-pr.outputs.is_dependency_update == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              merge_method: 'squash',
+            });

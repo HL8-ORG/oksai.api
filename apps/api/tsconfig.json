@@ -39,5 +39,13 @@
     { "path": "../../libs/config" },
     { "path": "../../libs/core" },
     { "path": "../../libs/auth" }
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true
+    }
+  }
 }

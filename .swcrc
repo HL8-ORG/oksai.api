@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true,
+      "dynamicImport": false
+    },
+    "target": "es2021",
+    "loose": false,
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@oksai/core": ["./libs/core/src"],
+      "@oksai/auth": ["./libs/auth/src"],
+      "@oksai/common": ["./libs/common/src"],
+      "@oksai/config": ["./libs/config/src"],
+      "@oksai/constants": ["./libs/constants/src"],
+      "@oksai/contracts": ["./libs/contracts/src"],
+      "@oksai/utils": ["./libs/utils/src"]
+    },
+    "transform": {
+      "legacyDecorator": true,
+      "decoratorMetadata": true
+    }
+  },
+  "module": {
+    "type": "commonjs",
+    "strict": false,
+    "strictMode": true,
+    "lazy": false,
+    "noInterop": false
+  },
+  "minify": false,
+  "isModule": false,
+  "sourceMaps": true
+}

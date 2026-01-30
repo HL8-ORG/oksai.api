@@ -1,1 +1,0 @@
-{"version":3,"file":"cqrs.module.js","sourceRoot":"","sources":["cqrs.module.ts"],"names":[],"mappings":";;;;;;;;;AAUA,2CAAwC;AACxC,uCAA4D;AAarD,IAAM,UAAU,GAAhB,MAAM,UAAU;CAAG,CAAA;AAAb,gCAAU;qBAAV,UAAU;IAJtB,IAAA,eAAM,EAAC;QACN,OAAO,EAAE,CAAC,iBAAc,CAAC;QACzB,OAAO,EAAE,CAAC,iBAAc,CAAC;KAC1B,CAAC;GACW,UAAU,CAAG"}
